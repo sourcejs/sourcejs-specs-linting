@@ -1,0 +1,21 @@
+{
+  "name": "sourcejs-linting",
+  "version": "0.0.0",
+  "description": "Specifications linting for SourceJS",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sourcejs/sourcejs-specs-linting.git"
+  },
+  "keywords": [
+    "sourcejs",
+    "specs-linting"
+  ],
+  "author": "Ilya Mikhailov",
+  "license": "https://github.com/sourcejs/sourcejs-specs-linting/blob/master/LICENSE",
+  "bugs": {
+    "url": "https://github.com/sourcejs/sourcejs-specs-linting/issues"
+  },
+  "homepage": "https://github.com/sourcejs/sourcejs-specs-linting",
+  "dependencies": {}
+}
