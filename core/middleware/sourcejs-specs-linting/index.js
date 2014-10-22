@@ -1,38 +1,65 @@
 exports.process = (function() {
+	"use strict";
 
-	var validators = (function() {
-		var vList = {};
-		var validatorsPath = __dirname + '/validators/';
+	var validator = require(__dirname + "/validator");
 
-		require('fs').readdirSync(validatorsPath).forEach(function(fileName) {
-			if (fileName.match(/.+\.js/g) !== null) {
-				vList[fileName.replace('.js', '')] = require(validatorsPath + fileName);
+	var suites = (function() {
+		var sList = {};
+		var suitesPath = __dirname + '/suites/';
+
+		require('fs').readdirSync(suitesPath).forEach(function(fileName) {
+			if (!!fileName.match(/.+\.js/g)) {
+				var suite = require(suitesPath + fileName)(validator);
+				sList[fileName.replace('.js', '')] = suite;
 			}
 		});
-		return vList;
+		return sList;
 	})();
 
-	var renderValidationResults = function(specData, errors) {
+	var processExceptions = function(specData, exceptions) {
+		Object.keys(exceptions).forEach(function(type) {
+			exceptions[type].forEach(function(ex) {
+				renderException(specData, ex);
+				storeException(specData, ex);
+			});
+		});
 
 	};
 
-	var validate = function(req, res, next) {
-		if (req && req.specData) {
-			var isValidSpec = true;
-			var validationErrors = [];
-			Object.keys(validators).forEach(function(key) {
-				var validationResult = validators[key].call(this, req.specData);
-				if (validationResult) {
-					isValidSpec = false;
-					validationErrors.push(validationResult);
+	var renderException = function(specData, exception) {
+		console.log("Rendering... ", exception);
+	};
+
+	var storeException = function(specData, exception) {
+		console.log("Logging... ", exception);
+	};
+
+	var isEmpty = function(map) {
+		for(var key in map) {
+			if (map.hasOwnProperty(key)) {
+				return false;
+			}
+		}
+		return true;
+	};
+
+	var processSpecs = function(req, res, next) {
+		if (req && req.specData && !isEmpty(req.specData)) {
+			var validationExceptions = {};
+			Object.keys(suites).forEach(function(name) {
+				var validationResults = suites[name].process(req.specData);
+				if (validationResults && validationResults.length) {
+					validationExceptions[name] = validationResults;
 				}
 			});
-			!isValidSpec && renderValidationResults(req.specData, validationErrors);
+			if (!isEmpty(validationExceptions)) {
+				processExceptions(req.specData || {}, validationExceptions);
+			}			
 		}
 		next();
 	};
 
-	return validate;
+	return processSpecs;
 
 })();
 

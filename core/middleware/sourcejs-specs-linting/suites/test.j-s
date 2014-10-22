@@ -1,0 +1,29 @@
+module.exports = (function() {
+
+	var requiredFields = ['title', 'author', 'description', 'tag'];
+
+	var checkRequiredFields = function(spec) {
+		for (var i = 0; i < requiredFields.length; i++) {
+			if (!spec.hasOwnProperty(requiredFields[i])) {
+				return requiredFields[i];
+			}
+		}
+		return;
+	};
+
+	var createError = function(errorId, args) {
+		return {
+			"name": "EmptyRequiredFields",
+			"type": "error",
+			"message": "At least one required field is empty. Required fields: " + args[0]
+		}
+	};
+
+	return function(spec) {
+		var requiredField = checkRequiredFields(spec);
+		if (requiredField) {
+			return createError('requiredFields', [requiredField]);
+		}
+		return;
+	};
+})();
