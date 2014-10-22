@@ -2,12 +2,13 @@ exports.process = (function() {
 	"use strict";
 
 	var validator = require(__dirname + "/validator");
+	var fs = require('fs');
 
 	var suites = (function() {
 		var sList = {};
 		var suitesPath = __dirname + '/suites/';
 
-		require('fs').readdirSync(suitesPath).forEach(function(fileName) {
+		fs.readdirSync(suitesPath).forEach(function(fileName) {
 			if (!!fileName.match(/.+\.js/g)) {
 				var suite = require(suitesPath + fileName)(validator);
 				sList[fileName.replace('.js', '')] = suite;
@@ -16,18 +17,31 @@ exports.process = (function() {
 		return sList;
 	})();
 
+	var appendPluginStyles = function(specData) {
+		var styles = '<style>\n' + fs.readFileSync(__dirname + "/styles.css",  'utf8') + '\n</style>\n';
+		specData.renderedHtml += styles;
+	}
+
 	var processExceptions = function(specData, exceptions) {
+		appendPluginStyles(specData);
+		specData.renderedHtml += '<div class="ex-container">';
 		Object.keys(exceptions).forEach(function(type) {
 			exceptions[type].forEach(function(ex) {
 				renderException(specData, ex);
 				storeException(specData, ex);
 			});
 		});
+		specData.renderedHtml += '</div>'
 
 	};
 
+	//TODO: wrap html strings to templates or functions
 	var renderException = function(specData, exception) {
-		console.log("Rendering... ", exception);
+		var exDom = '<div class="linting-ex ' + (exception.isError ? "__error" : "__warning") + '">'
+			+ '<span class="ex-name">' + exception.name + ': </span>'
+			+ '<span class="ex-message">' + exception.message + '</span>'
+			+ '</div>';
+		specData.renderedHtml += exDom;
 	};
 
 	var storeException = function(specData, exception) {

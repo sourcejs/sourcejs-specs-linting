@@ -1,0 +1,38 @@
+.ex-container {
+	height: 25px;
+	width: 100%;
+	position: fixed;
+	top: 50px;
+	left: 0px;
+	background-color: #FFF;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	}
+
+.linting-ex {
+	margin: 0 5px 5px 5px;
+	background-color: #FFF;
+	}
+
+	.linting-ex.__error {
+		border: 2px solid #F00;
+		}
+
+		.linting-ex.__error .ex-name {
+			color: #F00;
+			}
+
+	.linting-ex.__warning {
+		border: 2px solid #F0D01C;
+		}
+
+		.linting-ex.__warning .ex-name {
+			color: #F0D01C;
+			}
+
+
+
+.ex-name {
+	font-weight: bold;
+	padding-left: 10px;
+	}
