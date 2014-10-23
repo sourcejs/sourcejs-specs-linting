@@ -61,7 +61,7 @@ exports.process = (function() {
 		if (req && req.specData && !isEmpty(req.specData)) {
 			var validationExceptions = {};
 			Object.keys(suites).forEach(function(name) {
-				var validationResults = suites[name].process(req.specData);
+				var validationResults = suites[name].process(req.specData, req.url);
 				if (validationResults && validationResults.length) {
 					validationExceptions[name] = validationResults;
 				}

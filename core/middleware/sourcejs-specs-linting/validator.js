@@ -18,11 +18,12 @@ module.exports = (function() {
 	Validator.prototype = {
 		"suites": {},
 		"exceptions": {},
-		"process": function(data) {
+		"process": function(data, url) {
 			var self = this;
 			var result = [];
 			Object.keys(self.suites).forEach(function(name) {
-				result.push(self.suites[name].call(self, data));
+				var suiteResult = self.suites[name].call(self, data, url);
+				suiteResult && result.push(suiteResult);
 			});
 			return result;
 		},
