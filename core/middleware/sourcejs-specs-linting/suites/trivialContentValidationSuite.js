@@ -1,11 +1,4 @@
 module.exports = function(Validator) {
-	/**
-	 * Checks:
-	 * - unic title (error)
-	 * - valid thumnnail (warning) 
-	 * - unic keywords set (warning)
-	 * - designer spec is exists (warning)
-	 */
 
 	var fileTree;
 	var fileTreePath = global.app.get('user') + "/" + global.opts.core.fileTree.outputFile;
