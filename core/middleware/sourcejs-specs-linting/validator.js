@@ -41,6 +41,37 @@ module.exports = (function() {
 			manifest.exceptions = manifest.exceptions || {};
 			manifest.suites = manifest.suites || {};
 			return manifest;
+		},
+
+		"getSpecsByField": function(field) {
+			var fileTreePath =  "./" + global.opts.core.api.specsData;
+			var acc = [];
+			var source = this.fileTree;
+
+			var isNavigation = function(item) {
+				return item.specFile.role && item.specFile.role === "navigation";
+			};
+
+			var hasSearchedField = function(item, field) {
+				return item.specFile[field.key] && item.specFile[field.key] === field.value;
+			};
+
+			var getObj = function(data, field) {
+				for(var key in data) {
+					var item = data[key];
+					var isValidItem = item && item.specFile;
+					if(isValidItem && !isNavigation(item) && hasSearchedField(item, field)) {
+						acc.push(item);
+					}
+					if(item instanceof Object) {
+						getObj(item, field);
+					};
+				}
+			};
+
+			this.fileTree = this.fileTree || JSON.parse(require('fs').readFileSync(fileTreePath, 'utf-8'));
+			getObj(source, field);
+			return acc;
 		}
 	};
 
