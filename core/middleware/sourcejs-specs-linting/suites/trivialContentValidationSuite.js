@@ -36,16 +36,9 @@ module.exports = function(Validator) {
 				"message": "Spec title <strong>\"{0}\"</strong> is not unic. Specs with the same title: <strong>{1}</strong>.",
 				"type": "error"
 			},
-			"ThumbnailNotFound": {
-				"message": "Missed thumbnail in spec <strong>{0}</strong>",
-				"type": "warning"
-			},
 			"IncorrectKeywordsSet": {
 				"message": "Keywords set <strong>\"{0}\"</strong> is not unic in spec <strong>{1}</strong>.",
 				"type": "warning"
-			},
-			"MissedDesignSpecLink": {
-				"message": "Link to designer spec is missed in spec  <strong>{0}</strong>."
 			}
 		}
 	});

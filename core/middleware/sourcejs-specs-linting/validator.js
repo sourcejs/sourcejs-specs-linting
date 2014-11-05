@@ -72,6 +72,14 @@ module.exports = (function() {
 			this.fileTree = this.fileTree || JSON.parse(require('fs').readFileSync(fileTreePath, 'utf-8'));
 			getObj(source, field);
 			return acc;
+		},
+		"getRenderedHTMLDocument": function(markup) {
+			return require("jsdom").html(markup, null, {
+				features: {
+					'FetchExternalResources' : false,
+					'ProcessExternalResources' : false
+				}
+			});
 		}
 	};
 
