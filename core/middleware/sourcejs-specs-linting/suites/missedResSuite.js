@@ -1,10 +1,19 @@
 module.exports = function(Validator) {
 
 	var fs = require('fs');
+	var path = require('path');
 
 	var isValidResourceURI = function(uri) {
-		return uri && fs.existsSync(uri);
-	}
+		if (!uri) return false;
+		var isInUser = fs.existsSync(path.join(global.app.get('user'), uri));
+		var isInMasterAppWeb = global.opts.core.masterApp && global.opts.core.masterApp.path
+			? fs.existsSync(path.join(global.opts.core.masterApp.path, uri))
+			: false;
+		var isInMasterAppMob = global.opts.core.masterApp && global.opts.core.masterApp.pathMob
+			? fs.existsSync(path.join(global.opts.core.masterApp.pathMob, uri))
+			: false;
+		return isInUser || isInMasterAppWeb || isInMasterAppMob;
+	};
 
 	return Validator.create({
 		"suites" : {
@@ -49,10 +58,6 @@ module.exports = function(Validator) {
 			"ResourceNotFound": {
 				"message": "Missed resource {0} in spec <strong>{1}</strong>",
 				"type": "error"
-			},
-			"MissedDesignSpecLink": {
-				"message": "Link to designer spec is missed in spec  <strong>{0}</strong>.",
-				"type": "warning"
 			}
 		}
 	});
