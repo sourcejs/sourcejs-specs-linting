@@ -1,38 +1,40 @@
 .ex-container {
-	height: 25px;
-	width: 100%;
-	position: fixed;
-	top: 50px;
-	left: 0px;
-	background-color: #FFF;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	}
+    position: fixed;
+    top: 45px;
+    left: 0;
+    right: 0;
+    padding: 5px 0;
+    z-index: 999;
+    }
 
 .linting-ex {
-	margin: 0 5px 5px 5px;
-	background-color: #FFF;
-	}
+    background-color: #FFF;
+    padding: 10px 10px 10px 26px;
+    }
 
-	.linting-ex.__error {
-		border: 2px solid #F00;
-		}
+    .linting-ex.__warning {
+        background: #ffb600 url(/source/assets/i/lint-warn.png) no-repeat 12px 8px;
+        color: #630;
+        }
 
-		.linting-ex.__error .ex-name {
-			color: #F00;
-			}
+    .linting-ex.__error {
+        background: #f40 url(/source/assets/i/lint-err.png) no-repeat 12px 8px;
+        color: #fdd;
+        }
 
-	.linting-ex.__warning {
-		border: 2px solid #F0D01C;
-		}
+    .linting-ex .ex-name {
+        padding-left: 10px;
+        display: inline;
+        font-size: 14px;
+        line-height: 1.1;
+        font-weight: bold;
+        }
 
-		.linting-ex.__warning .ex-name {
-			color: #F0D01C;
-			}
+        .linting-ex.__warning .ex-name {
+            color: #000;
+            }
 
+        .linting-ex.__error .ex-name {
+            color: #fff;
+            }
 
-
-.ex-name {
-	font-weight: bold;
-	padding-left: 10px;
-	}
