@@ -13,12 +13,18 @@
     }
 
     .linting-ex.__warning {
-        background: #ffb600 url(/source/assets/i/lint-warn.png) no-repeat 12px 8px;
+        background-color: #ffb600;
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAARCAYAAAA/mJfHAAABZElEQVR42qWTvUoDURCFrwo2YrMs7I/Zv8rCWAnuCwgBe3urdOlsLfMEFlpZiVVqfQF9gmBpnzJBiIVinA/Ogi4XdfHCMMyZOd9ObnbdT6fX6+2UZXlt8USmdl2PQAGQqqpWTVCjd4aZ8UqQBwPsk6nRO4HyPN8z07uZ3yx20cjU6PS7bHWvrS6owzBMydTo9P8KGgg0T9M0jKLoKE2SFZkaXcDBb6wNG5wKdoYQx/EpMDI1uvpT5r0UDQ711GcrN30wdPoCDn0c7mXbmjMNnUj2wRx9zc3w+bYaa6tHSX6YDnMCjr+B7GIzay4tPizqFuwYGLkFqzW/xP91qxttdeu5gTX7J/vkdoN5fPgdJ8uyvp7wamLRNgRBkCVxPCG3e8zjw8+LjHCurS6d59hWtcFe7Gce+vr48MMBNlIxMeOW8591n8g8PvlHriiKqnmr/xFzOM2HfWDr3pm46AhZ8J3ih/MJ2aKpghkHpFEAAAAASUVORK5CYII=');
+        background-repeat: no-repeat;
+        background-position: 12px;
         color: #630;
         }
 
     .linting-ex.__error {
-        background: #f40 url(/source/assets/i/lint-err.png) no-repeat 12px 8px;
+        background-color: #f40;
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAARCAQAAAB6UzRyAAAAq0lEQVR4AY3SIW7DQBCF4VGISZElM9/BwMRSjtGewSdogFFYQHlJ7pCjBAQlIBdIaFnI15WqlSWrlvb95IFfq93ZiTkG365+EtfUBpHJpXayzEltlrTuePnSe0v0qb1w12apcsZFJ8x0Ljir/qQdnhqxoPHEpwgbD7yLf/jAwyZscRMr3LANI47C3jJ74YgxTDisSgdMRScV3anodQVzKpp40d+Vb0FmfZ9+AedkpUF42UxaAAAAAElFTkSuQmCC');
+        background-repeat: no-repeat;
+        background-position: 12px;
         color: #fdd;
         }
 
