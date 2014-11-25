@@ -26,11 +26,11 @@ module.exports = function(Validator) {
 		},
 		"exceptions": {
 			"DescriptionIsEmpty": {
-				"message": "Spec description is empty (missed) in spec <strong>{0}</strong>.",
+				"message": "Spec description is missing in <strong>{0}</strong>.",
 				"type": "warning"
 			},
 			"NoSourceCodeExamples": {
-				"message": "There is no any source examples in spec <strong>{0}</strong>.",
+				"message": "At least one source example is required in <strong>{0}</strong>.",
 				"type": "warning"
 			}
 		}

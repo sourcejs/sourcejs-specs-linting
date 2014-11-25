@@ -42,19 +42,19 @@ module.exports = function(Validator) {
 		},
 		"exceptions": {
 			"RequiredFieldMissed": {
-				"message": "Field <strong>\"{0}\"</strong> is missed in spec <strong>{1}</strong>.",
+				"message": "Field <strong>\"{0}\"</strong> is missing in <strong>{1}</strong>.",
 				"type": "error"
 			},
 			"DesirableFieldMissed": {
-				"message": "Field <strong>\"{0}\"</strong> is desirable, but is missed in spec <strong>{1}</strong>.",
+				"message": "Field <strong>\"{0}\"</strong> is recommended, but is missing in <strong>{1}</strong>.",
 				"type": "warning"
 			},
 			"EmptyRequiredField": {
-				"message": "Field <strong>\"{0}\"</strong> is empty in spec <strong>{1}</strong>.",
+				"message": "Field <strong>\"{0}\"</strong> is empty in <strong>{1}</strong>.",
 				"type": "error"
 			},
 			"EmptyDesirableField": {
-				"message": "Field <strong>\"{0}\"</strong> is desirable, but is empty in spec <strong>{1}</strong>.",
+				"message": "Field <strong>\"{0}\"</strong> is recommended, but is empty in spec <strong>{1}</strong>.",
 				"type": "warning"
 			}
 		}

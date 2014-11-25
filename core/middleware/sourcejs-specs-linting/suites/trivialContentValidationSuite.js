@@ -33,11 +33,11 @@ module.exports = function(Validator) {
 		},
 		"exceptions": {
 			"IncorrectSpecTitle": {
-				"message": "Spec title <strong>\"{0}\"</strong> is not unic. Specs with the same title: <strong>{1}</strong>.",
+				"message": "Spec title <strong>\"{0}\"</strong> is not unique. Specs with the same title: <strong>{1}</strong>.",
 				"type": "error"
 			},
 			"IncorrectKeywordsSet": {
-				"message": "Keywords set <strong>\"{0}\"</strong> is not unic in spec <strong>{1}</strong>.",
+				"message": "Keywords <strong>\"{0}\"</strong> are not unique in <strong>{1}</strong>.",
 				"type": "warning"
 			}
 		}
