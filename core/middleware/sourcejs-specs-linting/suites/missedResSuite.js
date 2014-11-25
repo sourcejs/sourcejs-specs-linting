@@ -52,11 +52,11 @@ module.exports = function(Validator) {
 		},
 		"exceptions": {
 			"ThumbnailNotFound": {
-				"message": "Missed thumbnail.png in spec <strong>{0}</strong>",
+				"message": "Spec thumbnail.png is missing in <strong>{0}</strong>",
 				"type": "warning"
 			},
 			"ResourceNotFound": {
-				"message": "Missed resource {0} in spec <strong>{1}</strong>",
+				"message": "{0} is missing in <strong>{1}</strong>",
 				"type": "error"
 			}
 		}
