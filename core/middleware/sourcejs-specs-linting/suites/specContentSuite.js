@@ -7,8 +7,8 @@ module.exports = function(Validator) {
 					return;
 				}
 				var document = this.getRenderedHTMLDocument(spec.renderedHtml);
-				var description = document.querySelector('.source_info').innerHTML;
-				if (!description || !description.length) {
+				var description = document.querySelector('.source_info');
+				if (!description || !description.innerHTML || !description.innerHTML.length) {
 					return this.createException("DescriptionIsEmpty", [urlToSpec])
 				}
 
