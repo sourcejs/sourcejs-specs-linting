@@ -8,21 +8,25 @@ module.exports = function(Validator) {
 	};
 
 	var isValidResourceURI = function(uri, urlToSpec) {
-		if (!uri) return false;
+		if (!uri) return true;
 		if (isSourceURI(uri)) return true;
 		urlToSpec = urlToSpec || "";
+
+		var buildDir = "build/grunt/";
 
 		var pathToUser = global.app.get('user') + "";
 		var pathToSpecDir = path.dirname(path.join(pathToUser, urlToSpec));
 		var pathToMasterApp = global.opts.core.masterApp ? global.opts.core.masterApp.path : undefined;
+		var pathToMasterAppBuild = global.opts.core.masterApp ? path.join(global.opts.core.masterApp.path, buildDir) : undefined;
 		var pathToMasterMob = global.opts.core.masterApp ? global.opts.core.masterApp.pathMob : undefined;
 
 		var isInSpecDir = fs.existsSync(path.join(pathToSpecDir, uri));
 		var isInUser = fs.existsSync(path.join(pathToUser, uri));
 		var isInMasterApp = pathToMasterApp ? fs.existsSync(path.join(pathToMasterApp, uri)) : false;
+		var isInMasterAppBuild = pathToMasterAppBuild ? fs.existsSync(path.join(pathToMasterAppBuild, uri)) : false;
 		var isInMasterMob = pathToMasterMob ? fs.existsSync(path.join(pathToMasterMob, uri)) : false;
 
-		return isInSpecDir || isInUser || isInMasterApp || isInMasterMob;
+		return isInSpecDir || isInUser || isInMasterApp || isInMasterAppBuild || isInMasterMob;
 	};
 
 	return Validator.create({
@@ -54,8 +58,9 @@ module.exports = function(Validator) {
 
 				var images = document.getElementsByTagName('img') || [];
 				for (var i = 0; i < images.length; i++) {
-					if (!isValidResourceURI(images[i].src.replace("file://", ""))) {
-						return this.createException("ResourceNotFound", [images[i].src, urlToSpec]);
+					var source = images[i].getAttribute('src');
+					if (!~source.indexOf('http') && !isValidResourceURI(source, urlToSpec)) {
+						return this.createException("ResourceNotFound", [source, urlToSpec]);
 					}
 				}
 			}
