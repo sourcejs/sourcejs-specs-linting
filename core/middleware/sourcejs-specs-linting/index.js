@@ -9,7 +9,7 @@ exports.process = (function() {
 		'enabled': false,
 		'targets': {
 			'development': ["*"],
-			'production': ["base"]
+			'production': []
 		}
 	};
 
