@@ -15,8 +15,22 @@ module.exports = function(Validator) {
 
 				var self = this;
 				var result = this.getSpecsByField({"key": "title", "value": spec.info.title});
+				var currentCategory = urlToSpec && urlToSpec.length
+					? urlToSpec.split("/")[0]
+					: undefined;
 
-				if (result.length > 1) {
+				if (result.length <= 1) return;
+
+				var nonUnicCounter = 0;
+				for (var i = 0; i < result.length; i++) {
+					var itemCategory = result[i].specFile.id && result[i].specFile.id.length
+						? result[i].specFile.id.split("/")[0]
+						: undefined;
+					if (itemCategory && currentCategory && itemCategory !== currentCategory) {
+						nonUnicCounter += 1;
+					}
+				}
+				if (nonUnicCounter > 1) {
 					return this.createException("IncorrectSpecTitle", [spec.info.title, formatSpecsMsg(result)]);
 				}
 			},
