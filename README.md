@@ -73,7 +73,7 @@ To make your plugin process only `webApp` content you shell specify environment 
 Current plugin version contains several predefined validation sutes. This suites are examples, which can be used 'as is' or removed.
 To create your own suites please add into `suites` folder your own js file, which has the following structure:
 
-```
+```javascript
 module.exports = function(Validator) {
 
         var isValidDueToRule1 = function(spec) {
