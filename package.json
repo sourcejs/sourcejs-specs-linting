@@ -1,6 +1,6 @@
 {
   "name": "sourcejs-linting",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Specifications linting for SourceJS",
   "main": "index.js",
   "repository": {
