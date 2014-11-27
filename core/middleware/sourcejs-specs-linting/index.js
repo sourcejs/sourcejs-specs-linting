@@ -3,6 +3,21 @@ exports.process = (function() {
 
 	var validator = require(__dirname + "/validator");
 	var fs = require('fs');
+	var path = require('path');
+
+	var _pluginOptions = global.opts.assets.pluginsOptions.specsLinting || {
+		'enabled': false,
+		'targets': {
+			'development': ["*"],
+			'production': ["base"]
+		}
+	};
+
+	if (_pluginOptions.enabled === false) {
+		return function(req, res, next) {
+			next();
+		};
+	}
 
 	var suites = (function() {
 		var sList = {};
@@ -57,8 +72,21 @@ exports.process = (function() {
 		return true;
 	};
 
+	var isSpecLintingApproved = function(specData, specUrl) {
+		specData = specData || {};
+		specUrl = specUrl
+			? specUrl.charAt(0) === path.sep ? specUrl.slice(1) : specUrl
+			: "";
+
+		var targetProjects = _pluginOptions["targets"][global.MODE] || [];
+		var specUrlParts = specUrl.split(path.sep);
+		var currentProject = specUrlParts && specUrlParts.length ? specUrlParts[0] : undefined;
+
+		return !isEmpty(specData) && (~targetProjects.indexOf("*") || ~targetProjects.indexOf(currentProject));
+	};
+
 	var processSpecs = function(req, res, next) {
-		if (req && req.specData && !isEmpty(req.specData)) {
+		if (req && isSpecLintingApproved(req.specData, req.url)) {
 			var validationExceptions = {};
 			Object.keys(suites).forEach(function(name) {
 				var validationResults = suites[name].process(req.specData, req.url);
