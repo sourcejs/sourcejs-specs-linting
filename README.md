@@ -54,16 +54,22 @@ This object defines environments set. Each of them can be specified by `global.M
 #### specsLinting.targets.<%= envName %>
 
 Type: `Array`
+
 Default value: []
-Values: ["env1Example", "env2Example", ...], ["*"], [].
+
+Values: `["env1Example", "env2Example", ...], ["*"], []`.
+
 You can use `["*"]` value to make plugin process all projects.
 Each Array member represents single project.
 
 For example:
 If you have the following projects folders structure:
+
+```
 user/
 -webApp/
 -mobApp/
+```
 
 To make your plugin process only `webApp` content you shell specify environment value like this: `"myEnv": ["webApp"]`.
 
