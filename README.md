@@ -102,21 +102,21 @@ module.exports = function(Validator) {
         }
       },
       "validatinRule2": function(specObj, urlToSpecification) {
-                if (!isValidDueToRule2(specObj)) {
-                    return this.createException("ErrorExample", [specObj.info.title]);
-                }
-            }
-        },
-        "exceptions": {
-            "ErrorExample": {
-                "message": "This is exception message with parameter {0}",
-                "type": "error"
-            },
-            "WarningExample": {
-                "message": "This is exception message with parameter {0} and {1}",
-                "type": "warning"
-            }
+        if (!isValidDueToRule2(specObj)) {
+          return this.createException("ErrorExample", [specObj.info.title]);
         }
-    });
+      }
+    },
+    "exceptions": {
+      "ErrorExample": {
+        "message": "This is exception message with parameter {0}",
+        "type": "error"
+      },
+      "WarningExample": {
+        "message": "This is exception message with parameter {0} and {1}",
+        "type": "warning"
+      }
+    }
+  });
 };
 ```
