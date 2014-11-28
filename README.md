@@ -23,17 +23,19 @@ Here the default plugin configuration is:
 
 ```
 pluginsOptions {
-    
-    . . .
-    
-    "specsLinting": {
-        "enabled": true,
-        "targets": {
-            "development": ["*"], // validation is turned on for any project in your "development" environment
-            "production": [] // validation is turned off in "production" environment
-        }
+
+  . . .
+
+  "specsLinting": {
+    "enabled": true,
+    "targets": {
+      "development": ["*"], // validation is turned on for any project in your "development" environment
+      "production": [] // validation is turned off in "production" environment
     }
-    . . .
+  },
+
+  . . .
+
 }
 ```
 
@@ -82,39 +84,39 @@ To create your own suites please add into `suites` folder your own js file, whic
 ```javascript
 module.exports = function(Validator) {
 
-        var isValidDueToRule1 = function(spec) {
-                // your implementation
-                return false;
-        };
+  var isValidDueToRule1 = function(spec) {
+    // your implementation
+    return false;
+  };
 
-        var isValidDueToRule2 = function(spec) {
-                // your implementation
-                return true;
-        };
+  var isValidDueToRule2 = function(spec) {
+    // your implementation
+    return true;
+  };
 
-        return Validator.create({
-                "suites": {
-                        "validatinRule1": function(specificationObj, urlToSpecification) {
-                                if (!isValidDueToRule1(specificationObj)) {
-                                        return this.createException("WarningExampleName", [specificationObj.info.title, "parameter2"]);
-                                }
-                        },
-                        "validatinRule2": function(specificationObj, urlToSpecification) {
-                                if (!isValidDueToRule2(specificationObj)) {
-                                        return this.createException("ErrorExampleName", [specificationObj.info.title]);
-                                }
-                        }
-                },
-                "exceptions": {
-                        "ErrorExampleName": {
-                                "message": "This is exception message with parameter {0}",
-                                "type": "error"
-                        },
-                        "WarningExampleName": {
-                                "message": "This is exception message with parameter {0} and {1}",
-                                "type": "warning"
-                        }
+  return Validator.create({
+    "suites": {
+      "validatinRule1": function(specObj, urlToSpecification) {
+        if (!isValidDueToRule1(specObj)) {
+          return this.createException("WarningExample", [specObj.info.title, "parameter2"]);
+        }
+      },
+      "validatinRule2": function(specObj, urlToSpecification) {
+                if (!isValidDueToRule2(specObj)) {
+                    return this.createException("ErrorExample", [specObj.info.title]);
                 }
-        });
+            }
+        },
+        "exceptions": {
+            "ErrorExample": {
+                "message": "This is exception message with parameter {0}",
+                "type": "error"
+            },
+            "WarningExample": {
+                "message": "This is exception message with parameter {0} and {1}",
+                "type": "warning"
+            }
+        }
+    });
 };
 ```
