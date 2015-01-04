@@ -1,13 +1,13 @@
 sourcejs-specs-linting
 ======================
 
-Sourcejs plugin for linting documentation page (spec) content, according to defined rules.
+[SourceJS](http://sourcejs.com) plugin for linting documentation page (spec) content, according to defined rules.
 
-This plugin process any .src docs from your content folder, also you can configure it using your `options.js` (or `local_options.js` file). To get more information please read [this doc](http://sourcejs.com/docs/base/#4!).
+This plugin process any `.src` docs from your content folder, also you can configure it using your `options.js` (or `local_options.js` file). To get more information please read [this doc](http://sourcejs.com/docs/base/#4!).
 
 ## Getting Started.
 
-To install, run `npm inastall` in `sourcejs/user` folder:
+To install, run npm in `sourcejs/user` folder:
 
 ```
 npm install sourcejs-specs-linting --save
@@ -18,7 +18,7 @@ Then restart your Sourcejs app instance.
 
 ## Plugin configuration.
 
-To configure it please add `specsLinting` section to pluginsOptions in your `options.js` file. 
+To configure it please add `specsLinting` section to pluginsOptions in your `options.js` file.
 Here the default plugin configuration is:
 
 ```
