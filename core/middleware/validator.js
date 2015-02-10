@@ -1,3 +1,5 @@
+var jsdom = require("jsdom");
+
 module.exports = (function() {
 	"use strict";
 
@@ -44,7 +46,7 @@ module.exports = (function() {
 		},
 
 		"getSpecsByField": function(field) {
-			var fileTreePath =  "./" + global.opts.core.api.specsData;
+			var fileTreePath =  global.pathToApp + "/" + global.opts.core.api.specsData;
 			var acc = [];
 			var source = this.fileTree;
 
@@ -74,7 +76,7 @@ module.exports = (function() {
 			return acc;
 		},
 		"getRenderedHTMLDocument": function(markup) {
-			return require("jsdom").html(markup, null, {
+			return jsdom.jsdom(markup, null, {
 				features: {
 					'FetchExternalResources' : false,
 					'ProcessExternalResources' : false

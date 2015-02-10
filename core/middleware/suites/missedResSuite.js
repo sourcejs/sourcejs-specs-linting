@@ -48,7 +48,6 @@ module.exports = function(Validator) {
 					return;
 				}
 				var document = this.getRenderedHTMLDocument(spec.renderedHtml);
-
 				var links = document.getElementsByTagName('link') || [];
 				for (var i = 0; i < links.length; i++) {
 					if (!isValidResourceURI(links[i].href, urlToSpec)) {
